@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 const IMAGENES_PRODUCTOS = {
-  "Sudadera \"Ctrl + Z\"": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80", // Sudadera urbana oscura
-  "Taza \"Fixing Bug\"": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80", // Taza de café Minimalista/Developer junto a teclado
-  "Playera \"Senior Dev\"": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" // Playera negra limpia
+  "Sudadera \"Ctrl + Z\"": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",
+  "Taza \"Fixing Bug\"": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+  "Playera \"Senior Dev\"": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
 };
 
 const IMAGEN_DE_RESPALDO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80";
@@ -11,7 +11,7 @@ const IMAGEN_DE_RESPALDO = "https://images.unsplash.com/photo-1618005182384-a83a
 function App() {
   const [productos, setProductos] = useState([]);
   const [carrito, setCarrito] = useState([]);
-  const [vista, setVista] = useState("tienda"); // "tienda" o "admin"
+  const [vista, setVista] = useState("tienda"); 
   
   const [mostrandoLoginAdmin, setMostrandoLoginAdmin] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
@@ -31,10 +31,10 @@ function App() {
   const [nuevoPrecio, setNuevoPrecio] = useState("");
 
   useEffect(() => {
-    fetch("https://cors-anywhere.herokuapp.com/https://ryusuiseikuken.com/api/productos.php")
+    fetch("http://ryusuiseikuken.com/api/productos.php")
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Error en la respuesta del servidor proxy");
+          throw new Error("Error en la respuesta del servidor remoto");
         }
         return response.json();
       })
@@ -167,7 +167,7 @@ function App() {
                         className="w-full h-full object-cover opacity-75 hover:opacity-90 transition-opacity duration-300" 
                       />
                       <span className="absolute top-3 right-3 bg-black/80 text-emerald-400 text-xs font-bold px-2 py-0.5 rounded uppercase border border-emerald-500/20">
-                        {prod.categoria || "Garm"}
+                        {prod.categoria || "CORE"}
                       </span>
                     </div>
                     <div className="p-5">
