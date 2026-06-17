@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
+// Diccionario de imágenes que concuerdan perfectamente con la temática de cada producto
 const IMAGENES_PRODUCTOS = {
   "Sudadera \"Ctrl + Z\"": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80", // Sudadera urbana oscura
   "Taza \"Fixing Bug\"": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80", // Taza de café Minimalista/Developer junto a teclado
   "Playera \"Senior Dev\"": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" // Playera negra limpia
 };
 
+// Imagen por defecto en caso de que agregues un producto nuevo en el admin
 const IMAGEN_DE_RESPALDO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80";
 
 function App() {
@@ -31,7 +33,8 @@ function App() {
   const [nuevoPrecio, setNuevoPrecio] = useState("");
 
   useEffect(() => {
-    fetch("http://ryusuiseikuken.com/api/productos.php")
+    // MODIFICADO: Se cambió http por https para evitar el bloqueo de Contenido Mixto en Vercel
+    fetch("https://ryusuiseikuken.com/api/productos.php")
       .then((response) => response.json())
       .then((data) => setProductos(data))
       .catch((error) => console.error("Error al conectar con la API:", error));
@@ -277,7 +280,6 @@ function App() {
               </form>
             </div>
 
-            {/* TABLA */}
             <div className="md:col-span-2 border border-zinc-800 bg-zinc-900 p-6 rounded-xl">
               <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">// Inventario en Memoria ({productos.length})</h3>
               <div className="overflow-x-auto">
