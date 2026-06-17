@@ -3,6 +3,10 @@
     {
       "source": "/api/productos.php",
       "destination": "http://ryusuiseikuken.com/api/productos.php"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
