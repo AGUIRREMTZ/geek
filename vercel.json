@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/productos.php",
+      "destination": "http://ryusuiseikuken.com/api/productos.php"
+    }
+  ]
+}

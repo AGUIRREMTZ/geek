@@ -31,10 +31,10 @@ function App() {
   const [nuevoPrecio, setNuevoPrecio] = useState("");
 
   useEffect(() => {
-    fetch("http://ryusuiseikuken.com/api/productos.php")
+    fetch("/api/productos.php")
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Error en la respuesta del servidor remoto");
+          throw new Error("Error en la respuesta del servidor proxy de Vercel");
         }
         return response.json();
       })
