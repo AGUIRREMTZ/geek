@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-// Diccionario de imágenes que concuerdan perfectamente con la temática de cada producto
 const IMAGENES_PRODUCTOS = {
   "Sudadera \"Ctrl + Z\"": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80", // Sudadera urbana oscura
   "Taza \"Fixing Bug\"": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80", // Taza de café Minimalista/Developer junto a teclado
   "Playera \"Senior Dev\"": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" // Playera negra limpia
 };
 
-// Imagen por defecto en caso de que agregues un producto nuevo en el admin
 const IMAGEN_DE_RESPALDO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80";
 
 function App() {
@@ -33,9 +31,13 @@ function App() {
   const [nuevoPrecio, setNuevoPrecio] = useState("");
 
   useEffect(() => {
-    // MODIFICADO: Se cambió http por https para evitar el bloqueo de Contenido Mixto en Vercel
-    fetch("https://ryusuiseikuken.com/api/productos.php")
-      .then((response) => response.json())
+    fetch("https://cors-anywhere.herokuapp.com/https://ryusuiseikuken.com/api/productos.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error en la respuesta del servidor proxy");
+        }
+        return response.json();
+      })
       .then((data) => setProductos(data))
       .catch((error) => console.error("Error al conectar con la API:", error));
   }, []);
@@ -373,7 +375,7 @@ function App() {
             </div>
 
             <div className="bg-zinc-50 px-6 py-2 border-b border-zinc-100 text-left">
-              <span className="text-xs font-bold text-zinc-500 tracking-wide">Metodo de pago</span>
+              <span className="text-xs font-bold text-zinc-500 tracking-wide">Método de pago</span>
             </div>
 
             <form onSubmit={procesarFormularioPago} className="p-6 bg-white space-y-4 flex-1">
@@ -453,7 +455,7 @@ function App() {
                     type="submit"
                     className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3.5 rounded-2xl text-base tracking-wide transition-all shadow-md active:scale-95"
                   >
-                    Guardar
+                    Pagar
                   </button>
                 )}
               </div>
