@@ -1,15 +1,37 @@
 import { useEffect, useState } from "react";
 
 const IMAGENES_PRODUCTOS = {
-  "Sudadera \"Ctrl + Z\"": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",
-  "Taza \"Fixing Bug\"": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
-  "Playera \"Senior Dev\"": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
+  "Sudadera \"Ctrl + Z\"": "/sudadera.jpg",
+  "Taza \"Fixing Bug\"": "/taza.jpg",
+  "Playera \"Senior Dev\"": "/playera.jpg"
 };
 
 const IMAGEN_DE_RESPALDO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80";
 
 function App() {
-  const [productos, setProductos] = useState([]);
+  const [productos, setProductos] = useState([
+  {
+    "id": 1,
+    "nombre": "Sudadera \"Ctrl + Z\"",
+    "precio": 599,
+    "descripcion": "Para cuando necesitas deshacer tus errores del día.",
+    "categoria": "SUDADERAS"
+  },
+  {
+    "id": 2,
+    "nombre": "Taza \"Fixing Bug\"",
+    "precio": 249,
+    "descripcion": "Líquido vital para compilar sin advertencias.",
+    "categoria" : "ACCESORIOS"
+  },
+  {
+    "id": 3,
+    "nombre": "Playera \"Senior Dev\"",
+    "precio": 349,
+    "descripcion": "No es magia, es experiencia acumulada.",
+    "categoria": "PLAYERAS"
+  }
+]);
   const [carrito, setCarrito] = useState([]);
   const [vista, setVista] = useState("tienda"); 
   
